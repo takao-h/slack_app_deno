@@ -1,0 +1,12 @@
+{
+  "apps": {
+    "ES06LDJ3T": {
+      "app_id": "A06CL9Z88JF",
+      "enterprise_id": "ES06LDJ3T",
+      "IsDev": false,
+      "team_domain": "zozo",
+      "team_id": "ES06LDJ3T"
+    }
+  },
+  "default": "zozo"
+}

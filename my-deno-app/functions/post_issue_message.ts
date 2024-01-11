@@ -108,9 +108,24 @@ export default SlackFunction(
       ],
     });
 
+    console.log(description)
+    // TODO: ここでdescriptionを整形してChatGPT APIに渡す
+
     // Return all inputs as outputs for consumption in subsequent functions
     return {
       outputs: { channel, severity, description, submitting_user, link },
     };
   },
 );
+
+const postChatGPT = async (description: string) => {
+  const res = await fetch("http://localhost:8000/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ description }),
+  });
+  const json = await res.json();
+  return json;
+}
