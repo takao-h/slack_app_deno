@@ -119,7 +119,7 @@ export default SlackFunction(
 );
 
 const postChatGPT = async (description: string) => {
-  const res = await fetch("http://localhost:8000/chat", {
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
