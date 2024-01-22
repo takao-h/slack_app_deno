@@ -123,6 +123,7 @@ const postChatGPT = async (description: string) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      'Authorization': `Bearer ${Deno.env.get("OPENAI_API_KEY")}` 
     },
     body: JSON.stringify({ description }),
   });
