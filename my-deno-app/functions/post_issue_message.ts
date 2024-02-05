@@ -109,6 +109,7 @@ export default SlackFunction(
     });
 
     console.log(description)
+    console.log(await postChatGPT(description), "chatgpt")
     // TODO: ここでdescriptionを整形してChatGPT APIに渡す
 
     // Return all inputs as outputs for consumption in subsequent functions
@@ -118,14 +119,15 @@ export default SlackFunction(
   },
 );
 
-const postChatGPT = async (description: string) => {
+const prompt = (description: string) => `${description}は英語でなんと言いますか？`;
+const postChatGPT = async (_description: string) => {
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      'Authorization': `Bearer ${Deno.env.get("OPENAI_API_KEY")}` 
+      'Authorization': `Bearer ${Deno.env.get("OPENAI_API_KEY")}`
     },
-    body: JSON.stringify({ description }),
+    body: JSON.stringify({ prompt: prompt(_description) }),
   });
   const json = await res.json();
   return json;
